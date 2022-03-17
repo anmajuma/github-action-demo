@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: GitHub Azure Actions Demo
 on: [push]
 jobs:
   Explore-GitHub-Actions:
@@ -20,4 +20,16 @@ jobs:
         with:
          path: ./adf-root
          id: /subscriptions/ac90002c-698e-4529-95d3-48e20a731732/resourceGroups/demorg/providers/Microsoft.DataFactory/factories/dem0adf001
+      - name: Export ARM Template
+        id: export
+        uses: Azure/data-factory-export-action@v1.0.2
+        with:
+          path: ./adf-root 
+          id: /subscriptions/ac90002c-698e-4529-95d3-48e20a731732/resourceGroups/demorg/providers/Microsoft.DataFactory/factories/dem0adf001
+      - name: Publish ARM template
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: ${{ steps.export.outputs.arm-template-directory }}
+          if-no-files-found: error   
 
