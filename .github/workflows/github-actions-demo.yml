@@ -14,16 +14,9 @@ jobs:
           secrets: 'vADFresourceId'
         id: myGetSecretAction
       - run: echo ${{ steps.myGetSecretAction.outputs.vADFresourceId }}
-      - name: Export ARM Template
-        id: export
-        uses: Azure/data-factory-export-action@v1.0.2
-        with:
-          path: ./adf-root 
-          id: steps.myGetSecretAction.outputs.vADFresourceId
-      - name: Publish ARM template
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: ${{ steps.export.outputs.arm-template-directory }}
-          if-no-files-found: error   
+      - name: Validate Data Factory resources
+      - uses: Azure/data-factory-validate-action@v1.1.5
+    # with:
+    #   path: ./mydir [optional]
+    #   id: <data factory resource ID> [optional]
 
