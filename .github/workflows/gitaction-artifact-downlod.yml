@@ -1,5 +1,5 @@
 name: GitHub Actions Artifact  Demo
-on: [push]
+on: workflow_dispatch
 jobs:
   Download-GitHub-Artifact:
     runs-on: ubuntu-latest
