@@ -19,7 +19,7 @@ jobs:
         uses: Azure/data-factory-export-action@v1.0.2
         with:
           path: ./adf-root 
-          id: /subscriptions/ac90002c-698e-4529-95d3-48e20a731732/resourceGroups/demorg/providers/Microsoft.DataFactory/factories/dem0adf001
+          id: ${{ steps.myGetSecretAction.outputs.vADFresourceId }}
       - name: Publish ARM template
         uses: actions/upload-artifact@v2
         with:
