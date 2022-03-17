@@ -27,7 +27,7 @@ jobs:
           path: ${{ steps.export.outputs.arm-template-directory }}
           if-no-files-found: error   
 
-  Download-ADF-ARM-Template:
+  Deploy-ADF-ARM-Template:
     needs: Build-ADF-ARM-Template
     runs-on: ubuntu-latest
     steps:
@@ -35,6 +35,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: adf-artifact
+      - name: Login via Az module
+        uses: azure/login@v1
+        with:
+         creds: ${{ secrets.AZURE_CREDENTIALS }}
+         enable-AzPSSession: true     
       - name: Deploy ARM template
         uses: Azure/data-factory-deploy-action@v1.2.0
         with:
