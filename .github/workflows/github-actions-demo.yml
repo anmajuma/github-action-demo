@@ -34,5 +34,10 @@ jobs:
       - name: Download ARM template
         uses: actions/download-artifact@v3
         with:
-          name: adf-artifact 
-
+          name: adf-artifact
+      - name: Deploy ARM template
+        uses: Azure/data-factory-deploy-action@v1.2.0
+        with:
+            resourceGroupName: demorg
+            dataFactoryName: dem0adf002
+            armTemplateFile: ARMTemplateForFactory.json
