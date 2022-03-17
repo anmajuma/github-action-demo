@@ -26,4 +26,8 @@ jobs:
           name: my-artifact
           path: ${{ steps.export.outputs.arm-template-directory }}
           if-no-files-found: error   
+      - name: curl
+        uses: wei/curl@v1
+        with:
+         args: -H "X-JFrog-Art-Api:AKCp8krAZ8zADpqUNdqkdYJTxdwY33kdoZWCbcnVPZsygB7gtopMVZDP2838Pks3DmcEnXkSi" -T ${{ steps.export.outputs.arm-template-directory }} "https://artifactrepoanimesh.jfrog.io/artifactory/default-generic-local/adfbuildartf"
 
