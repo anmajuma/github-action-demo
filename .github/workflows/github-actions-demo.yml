@@ -14,8 +14,9 @@ jobs:
           secrets: 'vADFresourceId'
         id: myGetSecretAction
       - run: echo ${{ steps.myGetSecretAction.outputs.vADFresourceId }}
-      - name: Validate Data Factory resources
-      - uses: Azure/data-factory-validate-action@v1.1.5
+      - name: Validate ARM Template
+        id: validate
+        uses: Azure/data-factory-validate-action@v1.1.5
     # with:
     #   path: ./mydir [optional]
     #   id: <data factory resource ID> [optional]
