@@ -14,12 +14,6 @@ jobs:
           secrets: 'vADFresourceId'
         id: myGetSecretAction
       - run: echo ${{ steps.myGetSecretAction.outputs.vADFresourceId }}
-      - name: Validate ARM Template
-        id: validate
-        uses: Azure/data-factory-validate-action@v1.1.5
-        with:
-         path: ./adf-root
-         id: /subscriptions/ac90002c-698e-4529-95d3-48e20a731732/resourceGroups/demorg/providers/Microsoft.DataFactory/factories/dem0adf001
       - name: Export ARM Template
         id: export
         uses: Azure/data-factory-export-action@v1.0.2
