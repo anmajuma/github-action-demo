@@ -1,7 +1,7 @@
 name: GitHub Azure Actions Demo
 on: workflow_dispatch
 jobs:
-  Explore-GitHub-Actions:
+  Build-ADF-ARM-Template:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,11 +23,15 @@ jobs:
       - name: Publish ARM template
         uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
+          name: adf-artifact
           path: ${{ steps.export.outputs.arm-template-directory }}
           if-no-files-found: error   
-      - name: curl
-        uses: wei/curl@v1
+
+  Download-ADF-ARM-Template:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download ARM template
+        uses: actions/download-artifact@v3
         with:
-         args: -H "X-JFrog-Art-Api:AKCp8krAZ8zADpqUNdqkdYJTxdwY33kdoZWCbcnVPZsygB7gtopMVZDP2838Pks3DmcEnXkSi" -T ${{ steps.export.outputs.arm-template-directory }} "https://artifactrepoanimesh.jfrog.io/artifactory/default-generic-local/"
+          name: adf-artifact 
 
