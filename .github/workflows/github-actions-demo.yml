@@ -28,6 +28,7 @@ jobs:
           if-no-files-found: error   
 
   Download-ADF-ARM-Template:
+    needs: Build-ADF-ARM-Template
     runs-on: ubuntu-latest
     steps:
       - name: Download ARM template
