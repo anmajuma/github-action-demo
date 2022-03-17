@@ -1,0 +1,16 @@
+name: GitHub Actions Artifact  Demo
+on: [push]
+jobs:
+  Download-GitHub-Artifact:
+    runs-on: ubuntu-latest
+    steps:
+      name: Download artifact
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+             workflow: github-actions-demo.yml
+             workflow_conclusion: success
+             branch: dev
+             run_number: 20
+             
+             
+      
