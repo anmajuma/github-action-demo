@@ -1,5 +1,5 @@
 name: GitHub Azure Actions Demo
-on: [push]
+on: workflow_dispatch
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
