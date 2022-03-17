@@ -17,7 +17,7 @@ jobs:
       - name: Validate ARM Template
         id: validate
         uses: Azure/data-factory-validate-action@v1.1.5
-    # with:
-    #   path: ./mydir [optional]
-    #   id: <data factory resource ID> [optional]
+        with:
+         path: ./adf-root
+         id: steps.myGetSecretAction.outputs.vADFresourceId
 
