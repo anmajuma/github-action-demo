@@ -1,7 +1,7 @@
 name: GitHub Code Quality Check Demo
 on: workflow_dispatch
 jobs:
-  PyLint Runner:
+  pylint-runner:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
