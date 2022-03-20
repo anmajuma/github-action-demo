@@ -25,3 +25,5 @@ def etl():
   df = extract_Amazon("/databricks-datasets/amazon/test4K")
   df = transform_Amazon(df)
   load_Amazon(df)
+  dbutils.notebook.exit(json.dumps({"status": "OK","table": "my_data"}))
+
