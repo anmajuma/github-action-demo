@@ -22,6 +22,9 @@ jobs:
         0320-194318-gourulnl
         22850018007398
         8787" | databricks-connect configure
+    - name: Run datbricks connect test
+      run: |
+        databricks-connect test        
     - name: Run Pylint
       run: |
         python lint.py --path ./adb-root --threshold 2
