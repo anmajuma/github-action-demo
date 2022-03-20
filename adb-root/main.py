@@ -1,3 +1,4 @@
+# Databricks notebook source
 
 # This script is executed in our Python Job (or Azure Data Factory Python Task)
 # It can accept parameters
@@ -48,3 +49,4 @@ for arg in vars(args):
 
 # Execute ETL
 met(*l)
+
