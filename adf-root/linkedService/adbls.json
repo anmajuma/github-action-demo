@@ -1,0 +1,14 @@
+{
+	"name": "adbls",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-3851988629356549.9.azuredatabricks.net",
+			"authentication": "MSI",
+			"workspaceResourceId": "/subscriptions/ac90002c-698e-4529-95d3-48e20a731732/resourceGroups/demorg/providers/Microsoft.Databricks/workspaces/demoadb",
+			"existingClusterId": "1227-172259-99t4u5qi"
+		}
+	}
+}

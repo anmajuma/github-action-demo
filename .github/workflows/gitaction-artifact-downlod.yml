@@ -1,0 +1,19 @@
+name: GitHub Actions Artifact  Demo
+on: workflow_dispatch
+jobs:
+  Download-GitHub-Artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+             workflow: github-actions-demo.yml
+             workflow_conclusion: success
+             branch: dev
+             run_number: 20
+      - name: curl
+        uses: wei/curl@v1
+        with:
+           args: -H "X-JFrog-Art-Api:AKCp8krAZ8zADpqUNdqkdYJTxdwY33kdoZWCbcnVPZsygB7gtopMVZDP2838Pks3DmcEnXkSi" -O "https://artifactrepoanimesh.jfrog.io/artifactory/default-generic-local/adfbuildartf"       
+             
+      

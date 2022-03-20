@@ -1,0 +1,48 @@
+name: GitHub Azure Actions Demo
+on: workflow_dispatch
+jobs:
+  Build-ADF-ARM-Template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Azure/login@v1
+        with:
+             creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: Azure/get-keyvault-secrets@v1
+        with:
+          keyvault: "demo343"
+          secrets: 'vADFresourceId'
+        id: myGetSecretAction
+      - run: echo ${{ steps.myGetSecretAction.outputs.vADFresourceId }}
+      - name: Export ARM Template
+        id: export
+        uses: Azure/data-factory-export-action@v1.0.2
+        with:
+          path: ./adf-root 
+          id: ${{ steps.myGetSecretAction.outputs.vADFresourceId }}
+      - name: Publish ARM template
+        uses: actions/upload-artifact@v2
+        with:
+          name: adf-artifact
+          path: ${{ steps.export.outputs.arm-template-directory }}
+          if-no-files-found: error   
+
+  Deploy-ADF-ARM-Template:
+    needs: Build-ADF-ARM-Template
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download ARM template
+        uses: actions/download-artifact@v3
+        with:
+          name: adf-artifact
+      - name: Login via Az module
+        uses: azure/login@v1
+        with:
+         creds: ${{ secrets.AZURE_CREDENTIALS }}
+         enable-AzPSSession: true     
+      - name: Deploy ARM template
+        uses: Azure/data-factory-deploy-action@v1.2.0
+        with:
+            resourceGroupName: demorg
+            dataFactoryName: dem0adf002
+            armTemplateFile: ARMTemplateForFactory.json
