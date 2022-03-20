@@ -14,6 +14,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint==2.11.1
         pip install -U databricks-connect==9.1.*
+        pylint --dummy-variables-rgx='(_+[a-zA-Z0-9]*?$)|dummy|display'
     - name: Configure DBConnect
       run: |
         echo "y
